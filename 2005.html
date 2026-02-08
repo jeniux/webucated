@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ULTRA MEDIA EXPERIENCE 2005</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #000;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #1a1a2e 0%, #000 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            color: white;
+        }
+        .loading-logo {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+        }
+        .loading-bar {
+            width: 400px;
+            height: 30px;
+            background: #222;
+            border: 2px solid #444;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+        .loading-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0);
+            width: 0%;
+            transition: width 0.3s;
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
+        }
+        .loading-text {
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+        .loading-percent {
+            margin-top: 10px;
+            font-size: 24px;
+            color: #fff;
+        }
+        #introScreen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23000" width="100" height="100"/></svg>');
+            z-index: 9999;
+        }
+        .intro-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+        .intro-logo {
+            font-size: 72px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #00ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbow 3s linear infinite, pulse 2s ease-in-out infinite;
+            margin-bottom: 50px;
+            text-shadow: 0 0 30px rgba(255, 0, 128, 0.5);
+        }
+        @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .skip-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 30px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            animation: btnGlow 2s ease-in-out infinite;
+        }
+        .skip-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+        }
+        @keyframes btnGlow {
+            0%, 100% { box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 5px 30px rgba(102, 126, 234, 0.8); }
+        }
+        #mainContent {
+            display: none;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b0764 100%);
+            color: white;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        .header h1 {
+            font-size: 48px;
+            background: linear-gradient(45deg, #ff0080, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        .flash-container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 900px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+        .flash-player {
+            background: linear-gradient(135deg, #333, #111);
+            border: 5px solid #666;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .flash-logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5);
+            animation: flashBlink 3s ease-in-out infinite;
+        }
+        @keyframes flashBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .flash-message {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #ffaa00;
+        }
+        .install-btn {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 25px;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        .install-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 0, 0, 0.6);
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .content-card {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+        }
+        .content-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff0080;
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.3);
+        }
+        .content-card h3 {
+            color: #ff8c00;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        .play-btn {
+            background: linear-gradient(135deg, #00ff00, #00aa00);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 255, 0, 0.4);
+        }
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            border: 2px solid #ff0080;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        .back-link:hover {
+            background: #ff0080;
+            transform: translateX(-5px);
+        }
+        @media (max-width: 768px) {
+            .loading-bar { width: 90%; }
+            .intro-logo { font-size: 48px; }
+            .header h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen">
+        <div class="loading-logo">ULTRA MEDIA EXPERIENCE</div>
+        <div class="loading-bar">
+            <div class="loading-fill" id="loadingFill"></div>
+        </div>
+        <div class="loading-percent" id="loadingPercent">0%</div>
+        <div class="loading-text">Loading Flash Player and multimedia components...</div>
+        <div class="loading-text" style="font-size: 11px; margin-top: 10px; color: #666;">
+            (This would have taken 30-60 seconds in 2005)
+        </div>
+    </div>
+
+    <!-- Intro Screen -->
+    <div id="introScreen">
+        <div class="intro-content">
+            <div class="intro-logo">✨ ULTRA MEDIA EXPERIENCE ✨</div>
+            <button class="skip-btn" onclick="skipIntro()">SKIP INTRO »</button>
+            <p style="margin-top: 20px; color: #888; font-size: 12px;">
+                (Every Flash site made you sit through this)
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+        <a href="index.html" class="back-link">← Back to Time Machine</a>
+        
+        <div class="header">
+            <h1>🎬 ULTRA MEDIA EXPERIENCE 2005 🎬</h1>
+            <p style="color: #888;">The future of interactive web content!</p>
+        </div>
+
+        <!-- Flash Required Notice -->
+        <div class="flash-container">
+            <div class="flash-player">
+                <div class="flash-logo">F</div>
+                <h2 style="color: #fff;">Adobe Flash Player Required</h2>
+                <p class="flash-message">
+                    ⚠️ This website requires Adobe Flash Player to view content
+                </p>
+                <p style="color: #888; font-size: 14px; margin: 15px 0;">
+                    Flash Player is used by 99% of internet users and is completely safe*
+                </p>
+                <button class="install-btn" onclick="fakeFlashInstall()">
+                    INSTALL FLASH PLAYER NOW
+                </button>
+                <button class="install-btn" style="background: linear-gradient(135deg, #666, #333);" onclick="closeFlashNotice()">
+                    I Already Have Flash
+                </button>
+                <p style="color: #666; font-size: 11px; margin-top: 15px;">
+                    *Adobe Flash was discontinued in 2020 due to security issues
+                </p>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <div class="content-card">
+                <h3>🎵 Music Player</h3>
+                <p style="color: #ccc; margin-bottom: 15px;">
+                    Experience our revolutionary Flash-based music player with visualizations!
+                </p>
+                <button class="play-btn" onclick="showFlashError()">▶ LAUNCH PLAYER</button>
+            </div>
+
+            <div class="content-card">
+                <h3>🎮 Flash Games</h3>
+                <p style="color: #ccc; margin-bottom: 15px;">
+                    Play amazing Flash games right in your browser!
+                </p>
+                <button class="play-btn" onclick="showFlashError()">🎮 PLAY NOW</button>
+            </div>
+
+            <div class="content-card">
+                <h3>📺 Video Player</h3>
+                <p style="color: #ccc; margin-bottom: 15px;">
+                    Watch videos with our cutting-edge Flash video technology!
+                </p>
+                <button class="play-btn" onclick="showFlashError()">▶ WATCH VIDEO</button>
+            </div>
+
+            <div class="content-card">
+                <h3>🎨 Interactive Gallery</h3>
+                <p style="color: #ccc; margin-bottom: 15px;">
+                    Browse photos with stunning 3D transitions and effects!
+                </p>
+                <button class="play-btn" onclick="showFlashError()">🖼️ VIEW GALLERY</button>
+            </div>
+
+            <div class="content-card">
+                <h3>💬 Chat Room</h3>
+                <p style="color: #ccc; margin-bottom: 15px;">
+                    Join our Flash-powered chat with animated avatars!
+                </p>
+                <button class="play-btn" onclick="showFlashError()">💬 ENTER CHAT</button>
+            </div>
+
+            <div class="content-card">
+                <h3>🎪 Animated Menu</h3>
+                <p style="color: #ccc; margin-bottom: 15px;">
+                    Navigate with our award-winning 3D carousel menu!
+                </p>
+                <button class="play-btn" onclick="showFlashError()">🎪 OPEN MENU</button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 50px 0; padding: 30px; background: rgba(0, 0, 0, 0.6); border-radius: 15px; max-width: 800px; margin: 50px auto;">
+            <h2 style="color: #ff8c00; margin-bottom: 20px;">The Flash Era (2005-2010)</h2>
+            <p style="color: #ccc; line-height: 1.8;">
+                Flash dominated the web in the mid-2000s. Every "modern" website used it for 
+                animations, videos, games, and interactive content. It was slow, crashed constantly, 
+                had security vulnerabilities, didn't work on mobile, and consumed massive amounts 
+                of CPU power. But it looked cool! 😎
+            </p>
+            <p style="color: #888; margin-top: 15px; font-size: 14px;">
+                Flash was finally discontinued by Adobe in December 2020, marking the end of an era.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Loading screen simulation
+        let loadProgress = 0;
+        const loadingInterval = setInterval(() => {
+            loadProgress += Math.random() * 3 + 1;
+            if (loadProgress >= 100) {
+                loadProgress = 100;
+                clearInterval(loadingInterval);
+                setTimeout(showIntro, 500);
+            }
+            document.getElementById('loadingFill').style.width = loadProgress + '%';
+            document.getElementById('loadingPercent').textContent = Math.floor(loadProgress) + '%';
+        }, 100);
+
+        function showIntro() {
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('introScreen').style.display = 'block';
+            
+            // Auto-skip after 5 seconds (but most people clicked immediately)
+            setTimeout(() => {
+                if (document.getElementById('introScreen').style.display !== 'none') {
+                    skipIntro();
+                }
+            }, 5000);
+        }
+
+        function skipIntro() {
+            document.getElementById('introScreen').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        }
+
+        function closeFlashNotice() {
+            const flashContainer = document.querySelector('.flash-container');
+            flashContainer.style.transition = 'opacity 0.5s, transform 0.5s';
+            flashContainer.style.opacity = '0';
+            flashContainer.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                flashContainer.style.display = 'none';
+            }, 500);
+        }
+
+        function fakeFlashInstall() {
+            alert('Adobe Flash Player Installation\n\n' +
+                  'Downloading installer... (5.2 MB)\n\n' +
+                  'Just kidding! Flash is no longer available or needed. ' +
+                  'Modern websites use HTML5, CSS3, and JavaScript instead. ' +
+                  'We don\'t miss the constant crashes and security issues! 😅');
+            closeFlashNotice();
+        }
+
+        function showFlashError() {
+            const errors = [
+                '⚠️ Flash Player has crashed\n\nThis was extremely common in 2005. You would need to refresh the page and wait through the loading screen again!',
+                '⚠️ Flash Player is not responding\n\nWould you like to:\n• Wait for the plugin to respond\n• Stop the plugin\n• Debug the plugin\n\n(All options usually failed)',
+                '⚠️ A script in this movie is causing Adobe Flash Player to run slowly\n\nIf it continues to run, your computer may become unresponsive.\n\nDo you want to abort the script?\n\n(This happened constantly)',
+                '⚠️ Flash Content Error\n\nFlash has detected a problem and needs to close. Any unsaved data will be lost.\n\n(Including your high score in that Flash game)',
+                '⚠️ Security Warning\n\nThis Flash application is trying to access your system.\n\nAllow? (Y/N)\n\n(Security wasn\'t Flash\'s strong suit)'
+            ];
+            
+            const randomError = errors[Math.floor(Math.random() * errors.length)];
+            alert(randomError);
+        }
+
+        // Simulate Flash's notorious CPU usage
+        let cpuHog;
+        function startCPUHog() {
+            // Just kidding, we won't actually hog your CPU!
+            // But Flash really did this constantly
+            console.log('Flash would be consuming 60-100% of your CPU right now');
+        }
+
+        // Easter egg: detect when user tries to right-click (Flash often disabled this)
+        document.addEventListener('contextmenu', (e) => {
+            if (Math.random() < 0.3) {
+                e.preventDefault();
+                alert('Right-click has been disabled by Flash content on this page.\n\n(This was super annoying!)');
+            }
+        });
+    </script>
+</body>
+</html>

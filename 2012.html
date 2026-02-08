@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteBook Pro - Digital Organizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="%238B7355" width="100" height="100"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23A0826D" stroke-width="0.5" opacity="0.3"/></svg>');
+            background-size: 4px 4px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(to bottom, #8B7355, #6B5335);
+            border: 1px solid #4a3520;
+            border-radius: 8px;
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+            font-weight: bold;
+            z-index: 1000;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+        }
+        /* Leather-bound book */
+        .notebook {
+            background: linear-gradient(to bottom, #8B4513, #654321);
+            border: 2px solid #3e2723;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+            position: relative;
+        }
+        .notebook::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid rgba(139,69,19,0.5);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+        /* Stitching effect */
+        .notebook::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px dashed rgba(160,130,109,0.4);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+        .notebook-title {
+            text-align: center;
+            color: #f4e4c1;
+            font-size: 48px;
+            font-family: "Copperplate", "Papyrus", serif;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 -1px 0 rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        /* Paper page */
+        .page {
+            background: linear-gradient(to bottom, #fffef7 0%, #fff8e1 100%);
+            border: 1px solid #d4c5a9;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.8);
+            position: relative;
+            margin: 20px;
+        }
+        /* Paper texture lines */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 40px;
+            width: 2px;
+            height: 100%;
+            background: repeating-linear-gradient(transparent, transparent 25px, #ffc7c7 25px, #ffc7c7 26px);
+        }
+        .page h2 {
+            color: #3e2723;
+            font-size: 28px;
+            margin-bottom: 20px;
+            margin-left: 30px;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+            font-family: "Courier New", monospace;
+        }
+        .page p {
+            color: #4e342e;
+            line-height: 2;
+            margin-left: 30px;
+            font-family: "Georgia", serif;
+            background: repeating-linear-gradient(transparent, transparent 31px, rgba(0,0,0,0.05) 31px, rgba(0,0,0,0.05) 32px);
+        }
+        /* Wood shelf */
+        .shelf {
+            background: linear-gradient(to bottom, #8B7355, #6d5a44, #5c4a35);
+            height: 60px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5), inset 0 2px 0 rgba(255,255,255,0.1);
+            margin: 30px 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 15px;
+        }
+        /* Wood grain texture */
+        .shelf::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.05) 3px, rgba(0,0,0,0.05) 6px);
+            border-radius: 8px;
+        }
+        /* Leather button */
+        .leather-btn {
+            background: linear-gradient(to bottom, #8B4513, #654321);
+            border: 2px solid #3e2723;
+            border-radius: 12px;
+            padding: 15px 30px;
+            color: #f4e4c1;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            position: relative;
+        }
+        .leather-btn::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            border: 1px dashed rgba(244,228,193,0.3);
+            border-radius: 10px;
+        }
+        .leather-btn:active {
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.5);
+            transform: translateY(2px);
+        }
+        /* Calendar icon */
+        .calendar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(to bottom, #e74c3c, #c0392b);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+            position: relative;
+            margin: 20px;
+            display: inline-block;
+        }
+        .calendar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            right: 10px;
+            height: 15px;
+            background: #fff;
+            border-radius: 10px 10px 0 0;
+        }
+        .calendar::after {
+            content: 'FEB\A08';
+            white-space: pre;
+            position: absolute;
+            top: 25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+        /* Toggle switch */
+        .toggle-switch {
+            width: 80px;
+            height: 40px;
+            background: linear-gradient(to bottom, #34495e, #2c3e50);
+            border: 2px solid #1a252f;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+            display: inline-block;
+            margin: 20px;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(to bottom, #ecf0f1, #bdc3c7);
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.5);
+            transition: left 0.3s;
+        }
+        .toggle-switch.on {
+            background: linear-gradient(to bottom, #27ae60, #229954);
+        }
+        .toggle-switch.on::after {
+            left: 42px;
+        }
+        /* Compass */
+        .compass {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #f4e4c1, #d4c5a9);
+            border: 5px solid #8B7355;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5), inset 0 2px 5px rgba(0,0,0,0.3);
+            margin: 20px;
+            display: inline-block;
+        }
+        .compass::before {
+            content: 'N';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: #c0392b;
+            font-size: 18px;
+        }
+        .compass::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 50px solid #c0392b;
+        }
+        .info-box {
+            background: linear-gradient(to bottom, #fff9e6, #fff3cc);
+            border: 2px solid #ffeb99;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 30px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .info-box h3 {
+            color: #8B4513;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← Back</a>
+
+    <div class="container">
+        <div class="notebook">
+            <h1 class="notebook-title">NoteBook Pro</h1>
+            
+            <div class="page">
+                <h2>My Digital Organizer</h2>
+                <p>
+                    Welcome to your personal organizer! Everything here looks like real-world 
+                    objects because Steve Jobs said design should mimic real materials. Notice 
+                    the leather texture, paper lines, and stitching? That's skeuomorphism!
+                </p>
+            </div>
+
+            <div class="shelf">
+                <div class="calendar"></div>
+                <div class="compass"></div>
+                <div class="toggle-switch" onclick="this.classList.toggle('on')"></div>
+                <button class="leather-btn" onclick="alert('Every button looked like real leather or wood in 2012! iOS 6 was the peak of this design trend.')">Tap Me</button>
+            </div>
+
+            <div class="page">
+                <h2>Features</h2>
+                <p>
+                    ✓ Realistic leather texture<br>
+                    ✓ Paper with actual lines you can write on<br>
+                    ✓ Wood grain shelves for your apps<br>
+                    ✓ Stitching effects everywhere<br>
+                    ✓ 3D depth and shadows<br>
+                    ✓ Everything looks "real" instead of flat
+                </p>
+            </div>
+
+            <div class="info-box">
+                <h3>📱 The Skeuomorphic Era (2007-2013)</h3>
+                <p style="color: #654321; line-height: 1.8;">
+                    <strong>Skeuomorphism</strong> dominated Apple's iOS design from the first iPhone 
+                    through iOS 6. The philosophy was that digital interfaces should mimic real-world 
+                    materials to make them more familiar and approachable.
+                </p>
+                <p style="color: #654321; line-height: 1.8; margin-top: 15px;">
+                    <strong>Examples from iOS 6:</strong>
+                </p>
+                <ul style="color: #654321; margin-left: 30px; line-height: 2;">
+                    <li>Notes app looked like a yellow legal pad with torn paper</li>
+                    <li>Calendar had leather stitching at the top</li>
+                    <li>Bookshelf had wooden shelves for iBooks</li>
+                    <li>Voice Memos looked like a vintage microphone</li>
+                    <li>Game Center had green felt like a poker table</li>
+                    <li>Find My Friends had leather stitching</li>
+                    <li>Compass looked like a real compass</li>
+                    <li>Calculator had realistic button shadows</li>
+                </ul>
+                <p style="color: #654321; line-height: 1.8; margin-top: 15px;">
+                    <strong>The Great Debate:</strong> Skeuomorphism was controversial. Supporters said 
+                    it made interfaces intuitive. Critics said it was tacky and limited design. In 2013, 
+                    iOS 7 launched with flat design, ending the skeuomorphic era. Jony Ive famously 
+                    removed all the leather, wood, and felt textures.
+                </p>
+                <p style="color: #8B4513; margin-top: 15px; font-weight: bold;">
+                    Today, we use "flat design" with subtle shadows and gradients. No more fake leather!
+                </p>
+            </div>
+
+            <div class="page">
+                <h2>Why Did This Exist?</h2>
+                <p>
+                    In 2007, touchscreen smartphones were brand new. Apple believed people needed 
+                    familiar visual metaphors to understand digital interfaces. If a button looked 
+                    like a real button with texture and depth, users would know to press it.
+                </p>
+                <p style="margin-top: 20px;">
+                    By 2013, everyone understood touchscreens, so the realistic textures became 
+                    unnecessary decoration. iOS 7 ditched it all for clean, flat design.
+                </p>
+            </div>
+
+            <div style="text-align: center; margin: 30px 20px;">
+                <button class="leather-btn" onclick="alert('This leather button would have taken hours to design in Photoshop in 2012. Today we just use flat buttons with simple CSS!')">Another Leather Button</button>
+                <button class="leather-btn" style="background: linear-gradient(to bottom, #34495e, #2c3e50);" onclick="alert('Everything had realistic textures, shadows, and highlights. Designers spent more time on visual decoration than user experience!')">And Another One</button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #f4e4c1; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">
+            <p style="font-size: 13px;">© 2012 NoteBook Pro | Designed with love and fake leather</p>
+            <p style="font-size: 11px; margin-top: 5px; opacity: 0.8;">Best viewed on iPhone 4S with iOS 6 | Retina Display Optimized</p>
+        </div>
+    </div>
+</body>
+</html>

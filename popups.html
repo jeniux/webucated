@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREE DOWNLOADS - Amazing Software!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #fff;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .main-content {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .banner-ad {
+            width: 100%;
+            height: 90px;
+            background: linear-gradient(135deg, #ff0000, #ff6600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            animation: blink 1s infinite;
+            cursor: pointer;
+            border: 3px solid #ffff00;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.7; }
+        }
+        .sidebar-ad {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            width: 160px;
+            height: 600px;
+            background: linear-gradient(180deg, #00ff00, #00aa00);
+            border: 3px solid #ffff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            animation: shake 0.5s infinite;
+            z-index: 100;
+        }
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-2deg); }
+            75% { transform: rotate(2deg); }
+        }
+        .popup {
+            position: fixed;
+            background: white;
+            border: 3px solid #0000ff;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+            min-width: 300px;
+        }
+        .popup.active {
+            display: block;
+        }
+        .popup-titlebar {
+            background: linear-gradient(to bottom, #0078d7, #0053a6);
+            color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: move;
+            user-select: none;
+        }
+        .popup-close {
+            background: #ff0000;
+            color: white;
+            border: none;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .popup-content {
+            padding: 20px;
+        }
+        .fake-download-btn {
+            background: linear-gradient(to bottom, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            margin: 10px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        .fake-download-btn:hover {
+            background: linear-gradient(to bottom, #5CBF60, #55b059);
+        }
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #333;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            z-index: 10000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .content-box {
+            background: #f5f5f5;
+            border: 2px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .cursor-trail {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,0,0,0.5), transparent);
+            pointer-events: none;
+            z-index: 9999;
+            animation: fade-out 1s forwards;
+        }
+        @keyframes fade-out {
+            to { opacity: 0; transform: scale(2); }
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        .modal-overlay.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← Back to Safety</a>
+
+    <div class="banner-ad" onclick="spawnPopup('You are visitor #1,000,000! Click OK to claim your prize!', 'winner')">
+        🎉 CONGRATULATIONS! YOU ARE VISITOR #1,000,000! CLICK HERE TO CLAIM YOUR PRIZE! 🎉
+    </div>
+
+    <div class="sidebar-ad" onclick="spawnPopup('Download our toolbar to speed up your browser by 500%!', 'toolbar')">
+        CLICK HERE<br>FREE<br>TOOLBAR<br>DOWNLOAD<br>NOW!!!
+    </div>
+
+    <div class="main-content">
+        <h1 style="color: #0000ff; margin-bottom: 20px;">🎵 FREE MP3 DOWNLOADS 🎵</h1>
+
+        <div class="warning-box">
+            <h3 style="color: #856404; margin-bottom: 10px;">⚠️ Welcome to Pop-Up Hell (Late 1990s - Early 2000s)</h3>
+            <p style="color: #856404; line-height: 1.8;">
+                Before pop-up blockers became standard (around 2004), visiting websites was a nightmare. 
+                Every click spawned multiple pop-up windows with ads, fake virus warnings, and download 
+                buttons. Some sites would open 20+ pop-ups at once, crashing your browser. This era 
+                was so bad that pop-up blockers became one of the most important browser features ever.
+            </p>
+            <p style="color: #856404; margin-top: 10px; font-weight: bold;">
+                Click anything on this page to experience the chaos! (Don't worry, these are fake pop-ups)
+            </p>
+        </div>
+
+        <div class="content-box">
+            <h2>Download Your Favorite Songs!</h2>
+            <p style="margin: 15px 0; line-height: 1.8;">
+                Get unlimited free MP3 downloads! No registration required! Definitely not illegal! 
+                Absolutely no viruses!
+            </p>
+            
+            <button class="fake-download-btn" onclick="createFakeDownloadPopup()">
+                ⬇️ DOWNLOAD NOW - 100% FREE ⬇️
+            </button>
+            <button class="fake-download-btn" onclick="createFakeDownloadPopup()">
+                ⬇️ MIRROR DOWNLOAD LINK ⬇️
+            </button>
+            <button class="fake-download-btn" onclick="createFakeDownloadPopup()">
+                ⬇️ ALTERNATIVE DOWNLOAD ⬇️
+            </button>
+            
+            <p style="margin-top: 15px; color: #666; font-size: 13px;">
+                (Only one of these buttons actually downloads the file. Good luck guessing which one!)
+            </p>
+        </div>
+
+        <div class="content-box">
+            <h2>Featured Software</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div style="border: 2px solid #ddd; padding: 15px; text-align: center; cursor: pointer;" onclick="spawnMultiplePopups()">
+                    <h3>Music Player</h3>
+                    <button class="fake-download-btn" style="font-size: 14px; padding: 10px;">Download</button>
+                </div>
+                <div style="border: 2px solid #ddd; padding: 15px; text-align: center; cursor: pointer;" onclick="spawnMultiplePopups()">
+                    <h3>Screen Saver</h3>
+                    <button class="fake-download-btn" style="font-size: 14px; padding: 10px;">Download</button>
+                </div>
+                <div style="border: 2px solid #ddd; padding: 15px; text-align: center; cursor: pointer;" onclick="spawnMultiplePopups()">
+                    <h3>Cursor Pack</h3>
+                    <button class="fake-download-btn" style="font-size: 14px; padding: 10px;">Download</button>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: #e74c3c; color: white; padding: 20px; margin: 20px 0; border-radius: 8px; cursor: pointer;" onclick="createVirusWarning()">
+            <h2 style="margin-bottom: 10px;">⚠️ VIRUS ALERT! ⚠️</h2>
+            <p style="line-height: 1.6;">
+                Your computer is infected with 42 viruses! Click here immediately to scan and remove them!
+            </p>
+        </div>
+
+        <div class="content-box">
+            <h2>Why Were Pop-Ups So Bad?</h2>
+            <ul style="margin: 15px 0 15px 20px; line-height: 2; color: #666;">
+                <li>Websites could open unlimited pop-up windows</li>
+                <li>Pop-ups could spawn more pop-ups (recursive nightmare)</li>
+                <li>Some pop-ups tried to hide the close button</li>
+                <li>Others would move when you tried to close them</li>
+                <li>Many disguised ads as system warnings</li>
+                <li>Closing one pop-up would open three more</li>
+                <li>Your browser would crash from too many windows</li>
+                <li>Pop-unders would hide behind your browser</li>
+            </ul>
+            
+            <div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 15px; border-radius: 5px; margin-top: 20px;">
+                <h3 style="color: #155724; margin-bottom: 10px;">What Fixed It?</h3>
+                <p style="color: #155724; line-height: 1.8;">
+                    In 2004, Firefox introduced the first effective pop-up blocker. Internet Explorer 
+                    added one in IE6 SP2. Safari and Chrome followed. Today, pop-up blockers are so 
+                    effective that many younger people have never experienced pop-up hell. Modern browsers 
+                    also restrict JavaScript's ability to open windows without user interaction.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="overlay"></div>
+
+    <script>
+        let popupCount = 0;
+        let cursorTrailEnabled = false;
+
+        // Create pop-ups
+        function spawnPopup(message, type) {
+            popupCount++;
+            const popup = document.createElement('div');
+            popup.className = 'popup active';
+            popup.style.left = (Math.random() * (window.innerWidth - 350)) + 'px';
+            popup.style.top = (Math.random() * (window.innerHeight - 200)) + 'px';
+            
+            popup.innerHTML = `
+                <div class="popup-titlebar">
+                    <span>${type === 'winner' ? '🎉 Congratulations!' : type === 'virus' ? '⚠️ VIRUS ALERT' : '💻 Download'}</span>
+                    <button class="popup-close" onclick="closePopup(this)">×</button>
+                </div>
+                <div class="popup-content">
+                    <p style="margin-bottom: 15px;">${message}</p>
+                    <button onclick="closePopupAndSpawnMore(this)" style="padding: 8px 20px; margin: 5px;">OK</button>
+                    <button onclick="closePopupAndSpawnMore(this)" style="padding: 8px 20px; margin: 5px;">Cancel</button>
+                </div>
+            `;
+            
+            document.body.appendChild(popup);
+            
+            // Make draggable
+            makeDraggable(popup);
+            
+            // Show overlay if too many popups
+            if (popupCount > 3) {
+                document.getElementById('overlay').classList.add('active');
+            }
+        }
+
+        function createFakeDownloadPopup() {
+            const messages = [
+                'To download, please install our Download Manager first!',
+                'Click here to verify you are human!',
+                'Your download will begin in 30 seconds... (opens 5 ads)',
+                'Please disable your ad blocker to continue!',
+                'Subscribe to our newsletter to unlock downloads!',
+                'You must be 18+ to download. Click OK to confirm.'
+            ];
+            spawnPopup(messages[Math.floor(Math.random() * messages.length)], 'download');
+        }
+
+        function createVirusWarning() {
+            spawnPopup('WARNING: 42 viruses detected! Click OK to download our antivirus (which is definitely not malware)!', 'virus');
+            // Spawn 2 more for good measure
+            setTimeout(() => spawnPopup('System Error: Click here to fix!', 'virus'), 300);
+            setTimeout(() => spawnPopup('Windows has detected unusual activity!', 'virus'), 600);
+        }
+
+        function spawnMultiplePopups() {
+            // The classic: clicking one thing opens many popups
+            for (let i = 0; i < 4; i++) {
+                setTimeout(() => {
+                    const messages = [
+                        'First, install our toolbar!',
+                        'Then, register an account!',
+                        'Also, take this survey!',
+                        'By the way, want to win an iPad?'
+                    ];
+                    spawnPopup(messages[i], 'download');
+                }, i * 200);
+            }
+        }
+
+        function closePopup(btn) {
+            const popup = btn.closest('.popup');
+            popup.remove();
+            popupCount--;
+            if (popupCount <= 3) {
+                document.getElementById('overlay').classList.remove('active');
+            }
+        }
+
+        function closePopupAndSpawnMore(btn) {
+            // Classic pop-up hell: closing one spawns more!
+            closePopup(btn);
+            if (Math.random() > 0.5) {
+                setTimeout(() => {
+                    spawnPopup('Wait! Before you go, check out this offer!', 'download');
+                }, 100);
+            }
+        }
+
+        function makeDraggable(element) {
+            const titlebar = element.querySelector('.popup-titlebar');
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            
+            titlebar.onmousedown = dragMouseDown;
+            
+            function dragMouseDown(e) {
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+            
+            function elementDrag(e) {
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                element.style.top = (element.offsetTop - pos2) + "px";
+                element.style.left = (element.offsetLeft - pos1) + "px";
+            }
+            
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        // Annoying cursor trail (was popular in the 2000s)
+        document.addEventListener('mousemove', (e) => {
+            if (cursorTrailEnabled && Math.random() > 0.8) {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                trail.style.left = e.pageX + 'px';
+                trail.style.top = e.pageY + 'px';
+                document.body.appendChild(trail);
+                setTimeout(() => trail.remove(), 1000);
+            }
+        });
+
+        // Auto-spawn a welcome popup
+        setTimeout(() => {
+            spawnPopup('Welcome! Please take our survey to continue browsing!', 'download');
+        }, 2000);
+
+        // Random popup spawner (like the old days)
+        setInterval(() => {
+            if (Math.random() > 0.9 && popupCount < 8) {
+                spawnPopup('Special offer: Click here for amazing deals!', 'download');
+            }
+        }, 10000);
+
+        // Enable cursor trail after a few seconds
+        setTimeout(() => {
+            cursorTrailEnabled = true;
+        }, 5000);
+    </script>
+</body>
+</html>

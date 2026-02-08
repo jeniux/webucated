@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Center - Free MP3s and Software</title>
+    <style>
+        body {
+            background: #d4d0c8;
+            font-family: "MS Sans Serif", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #000;
+        }
+        .window {
+            background: #d4d0c8;
+            border: 2px outset #fff;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .title-bar {
+            background: linear-gradient(to bottom, #0a246a 0%, #0a246a 100%);
+            color: white;
+            padding: 3px 5px;
+            font-weight: bold;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .title-buttons {
+            display: flex;
+            gap: 2px;
+        }
+        .title-btn {
+            width: 16px;
+            height: 14px;
+            background: #d4d0c8;
+            border: 1px outset #fff;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .content {
+            padding: 20px;
+        }
+        .toolbar {
+            background: #d4d0c8;
+            border-bottom: 2px groove #fff;
+            padding: 5px;
+            margin-bottom: 15px;
+        }
+        .btn {
+            background: #d4d0c8;
+            border: 2px outset #fff;
+            padding: 5px 15px;
+            margin-right: 5px;
+            cursor: pointer;
+            font-family: "MS Sans Serif", Arial, sans-serif;
+            font-size: 12px;
+        }
+        .btn:active {
+            border: 2px inset #fff;
+        }
+        .download-item {
+            border: 2px groove #fff;
+            padding: 15px;
+            margin: 15px 0;
+            background: white;
+        }
+        .download-item h3 {
+            margin: 0 0 10px 0;
+            color: #0000ff;
+        }
+        .progress-window {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            z-index: 1000;
+        }
+        .progress-bar-container {
+            background: white;
+            border: 2px inset #fff;
+            padding: 2px;
+            margin: 15px 0;
+        }
+        .progress-bar {
+            background: #0000aa;
+            height: 20px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        .status-text {
+            font-size: 12px;
+            margin: 5px 0;
+        }
+        .speed-meter {
+            font-family: "Courier New", monospace;
+            background: black;
+            color: #00ff00;
+            padding: 10px;
+            border: 2px inset #666;
+            margin: 10px 0;
+        }
+        .back-link {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: #d4d0c8;
+            border: 2px outset #fff;
+            padding: 5px 15px;
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+        .warning {
+            background: #ffff00;
+            border: 3px solid #ff0000;
+            padding: 10px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+        }
+        .file-icon {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #4169e1 0%, #1e3a8a 100%);
+            vertical-align: middle;
+            margin-right: 10px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back</a>
+
+    <div class="window">
+        <div class="title-bar">
+            <span>🌐 Download Center - Microsoft Internet Explorer</span>
+            <div class="title-buttons">
+                <div class="title-btn">_</div>
+                <div class="title-btn">□</div>
+                <div class="title-btn" onclick="window.location.href='index.html'">×</div>
+            </div>
+        </div>
+        
+        <div class="toolbar">
+            <button class="btn">Back</button>
+            <button class="btn">Forward</button>
+            <button class="btn">Stop</button>
+            <button class="btn">Refresh</button>
+            <button class="btn">Home</button>
+        </div>
+
+        <div class="content">
+            <h1 style="color: #0000ff;">🎵 Free Music Downloads</h1>
+            
+            <div class="warning">
+                ⚠️ NOTICE: Downloads may take several hours depending on your connection speed<br>
+                Current Connection: 56K Dial-Up Modem (5.6 KB/s)
+            </div>
+
+            <p><b>Welcome to the download center!</b> Choose a file below to begin your download.</p>
+
+            <div class="download-item">
+                <h3>
+                    <span class="file-icon"></span>
+                    Awesome_Song.mp3
+                </h3>
+                <p>
+                    <b>Size:</b> 3.2 MB<br>
+                    <b>Estimated Download Time:</b> 8 hours, 12 minutes<br>
+                    <b>Description:</b> Your favorite song in MP3 format!
+                </p>
+                <button class="btn" onclick="startDownload('Awesome_Song.mp3', 3.2)">Download Now</button>
+            </div>
+
+            <div class="download-item">
+                <h3>
+                    <span class="file-icon"></span>
+                    Cool_Video.avi
+                </h3>
+                <p>
+                    <b>Size:</b> 12.5 MB<br>
+                    <b>Estimated Download Time:</b> 1 day, 4 hours<br>
+                    <b>Description:</b> Funny video clip everyone is talking about!
+                </p>
+                <button class="btn" onclick="startDownload('Cool_Video.avi', 12.5)">Download Now</button>
+            </div>
+
+            <div class="download-item">
+                <h3>
+                    <span class="file-icon"></span>
+                    game_demo.exe
+                </h3>
+                <p>
+                    <b>Size:</b> 45 MB<br>
+                    <b>Estimated Download Time:</b> 3 days, 8 hours<br>
+                    <b>Description:</b> Demo version of the latest game!
+                </p>
+                <button class="btn" onclick="startDownload('game_demo.exe', 45)">Download Now</button>
+            </div>
+
+            <div class="warning" style="background: #ff6666; color: white;">
+                ⚡ TIP: Make sure nobody picks up the phone during your download or it will be interrupted! ⚡
+            </div>
+        </div>
+    </div>
+
+    <!-- Download Progress Window -->
+    <div class="progress-window window" id="progressWindow">
+        <div class="title-bar">
+            <span>Download Progress</span>
+            <div class="title-buttons">
+                <div class="title-btn" onclick="cancelDownload()">×</div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="status-text">
+                Downloading: <span id="filename">file.mp3</span>
+            </div>
+            <div class="status-text">
+                <span id="downloadedSize">0 KB</span> of <span id="totalSize">3.2 MB</span> 
+                (<span id="percentage">0</span>%)
+            </div>
+            
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="speed-meter">
+                Speed: <span id="speed">5.2 KB/s</span><br>
+                Time Remaining: <span id="timeRemaining">8 hours, 12 minutes</span><br>
+                Status: <span id="status">Downloading...</span>
+            </div>
+
+            <div class="status-text" style="color: #0000ff; margin-top: 10px;">
+                <span id="funFact">Did you know? This download would complete in 2 seconds on modern internet!</span>
+            </div>
+
+            <button class="btn" onclick="cancelDownload()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let downloadInterval;
+        let progress = 0;
+        let interrupted = false;
+
+        const funFacts = [
+            "Did you know? This download would complete in 2 seconds on modern internet!",
+            "Fun fact: People used to start downloads before going to bed!",
+            "In 2002, downloading a movie could take several days!",
+            "Tip: Don't pick up the phone or the download will fail!",
+            "Back then, 'buffering' was a way of life.",
+            "People used download managers to resume broken downloads.",
+            "A 5MB file was considered huge in the dial-up era!",
+            "Remember: Every call to your house could ruin your download.",
+            "Modern 5G is about 10,000x faster than dial-up!"
+        ];
+
+        function startDownload(filename, sizeMB) {
+            const progressWindow = document.getElementById('progressWindow');
+            progressWindow.style.display = 'block';
+            document.getElementById('filename').textContent = filename;
+            document.getElementById('totalSize').textContent = sizeMB.toFixed(1) + ' MB';
+            
+            progress = 0;
+            interrupted = false;
+            updateProgress(sizeMB);
+            
+            downloadInterval = setInterval(() => {
+                if (interrupted) return;
+                
+                // Random chance of interruption (phone picked up!)
+                if (Math.random() < 0.15 && progress > 20 && progress < 95) {
+                    interruptDownload();
+                    return;
+                }
+                
+                // Random speed fluctuations
+                const speedVariation = Math.random() * 2 + 4;
+                document.getElementById('speed').textContent = speedVariation.toFixed(1) + ' KB/s';
+                
+                // Slow progress (0.5-1% per interval)
+                progress += Math.random() * 0.5 + 0.5;
+                
+                if (progress >= 100) {
+                    progress = 100;
+                    completeDownload();
+                    clearInterval(downloadInterval);
+                }
+                
+                updateProgress(sizeMB);
+                
+                // Rotate fun facts
+                if (Math.random() < 0.2) {
+                    const randomFact = funFacts[Math.floor(Math.random() * funFacts.length)];
+                    document.getElementById('funFact').textContent = randomFact;
+                }
+            }, 200);
+        }
+
+        function updateProgress(sizeMB) {
+            const progressBar = document.getElementById('progressBar');
+            const percentage = Math.floor(progress);
+            
+            progressBar.style.width = percentage + '%';
+            document.getElementById('percentage').textContent = percentage;
+            
+            const downloadedMB = (sizeMB * progress / 100).toFixed(2);
+            document.getElementById('downloadedSize').textContent = downloadedMB + ' MB';
+            
+            // Calculate fake time remaining
+            const remainingPercent = 100 - progress;
+            const secondsRemaining = (remainingPercent / 100) * (sizeMB * 1024 / 5.2);
+            const hours = Math.floor(secondsRemaining / 3600);
+            const minutes = Math.floor((secondsRemaining % 3600) / 60);
+            
+            if (hours > 0) {
+                document.getElementById('timeRemaining').textContent = 
+                    `${hours} hours, ${minutes} minutes`;
+            } else {
+                document.getElementById('timeRemaining').textContent = 
+                    `${minutes} minutes, ${Math.floor(secondsRemaining % 60)} seconds`;
+            }
+        }
+
+        function interruptDownload() {
+            interrupted = true;
+            clearInterval(downloadInterval);
+            document.getElementById('status').textContent = 'INTERRUPTED!';
+            document.getElementById('status').style.color = '#ff0000';
+            document.getElementById('speed').textContent = '0.0 KB/s';
+            document.getElementById('funFact').textContent = 
+                '⚠️ CONNECTION LOST! Someone picked up the phone! Your download is ruined! ☎️';
+            document.getElementById('funFact').style.color = '#ff0000';
+            
+            setTimeout(() => {
+                alert('Download Failed!\n\nYour internet connection was interrupted.\n\nReason: Someone in your house picked up the telephone.\n\nThis was the painful reality of dial-up internet in 2002. You would have to start the download all over again!');
+            }, 500);
+        }
+
+        function completeDownload() {
+            document.getElementById('status').textContent = 'COMPLETE!';
+            document.getElementById('status').style.color = '#00ff00';
+            document.getElementById('timeRemaining').textContent = '0 seconds';
+            document.getElementById('funFact').textContent = 
+                '🎉 Download complete! In 2002, you would have felt like you won the lottery!';
+            document.getElementById('funFact').style.color = '#008800';
+            
+            setTimeout(() => {
+                alert('Download Complete!\n\nYour file has been downloaded successfully!\n\n(In reality, this "8 hour" download would take about 2 seconds on modern internet. Crazy, right?)');
+            }, 500);
+        }
+
+        function cancelDownload() {
+            clearInterval(downloadInterval);
+            document.getElementById('progressWindow').style.display = 'none';
+            
+            if (progress > 0 && progress < 100) {
+                alert('Download cancelled!\n\n' + Math.floor(progress) + '% of the file was downloaded.\n\nIn the dial-up era, this wasted time could never be recovered. Most people would cry after accidentally canceling an 8-hour download at 99%!');
+            }
+        }
+
+        // Add realistic "slowness" feeling
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => {
+                if (!btn.onclick || btn.onclick.toString().includes('startDownload')) {
+                    // Only add delay to non-download buttons
+                    const originalClick = btn.onclick;
+                    btn.onclick = function(e) {
+                        btn.disabled = true;
+                        btn.textContent = 'Loading...';
+                        setTimeout(() => {
+                            btn.disabled = false;
+                            btn.textContent = btn.textContent.replace('Loading...', 'Download Now');
+                            if (originalClick) originalClick.call(this, e);
+                        }, 1000);
+                    };
+                }
+            });
+        });
+    </script>
+</body>
+</html>

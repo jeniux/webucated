@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to the World Wide Web</title>
+    <style>
+        body {
+            background-color: #c0c0c0;
+            font-family: "Times New Roman", Times, serif;
+            color: #000000;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        hr {
+            border: 1px solid #000000;
+        }
+        a {
+            color: #0000ff;
+        }
+        a:visited {
+            color: #800080;
+        }
+        .broken-img {
+            border: 1px solid #000;
+            width: 200px;
+            height: 150px;
+            background: white;
+            display: inline-block;
+            vertical-align: top;
+            padding: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        .back-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: #ddd;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: 2px outset #fff;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← Back to Time Machine</a>
+    
+    <center>
+        <h1>Welcome to My HomePage</h1>
+        <hr>
+    </center>
+
+    <p>
+        <b>Welcome!</b> You have reached John's Personal Home Page on the World Wide Web.
+    </p>
+
+    <p>
+        This page is best viewed with Netscape Navigator 1.0 or higher.
+    </p>
+
+    <hr>
+
+    <h2>About This Page</h2>
+    
+    <p>
+        Hello! I am a webmaster and this is my personal homepage. I created this using HTML,
+        the HyperText Markup Language. Pretty cool, huh?
+    </p>
+
+    <div class="broken-img">
+        [Image: picture.gif]<br><br>
+        ⚠️ Error loading image<br>
+        File not found
+    </div>
+
+    <p>
+        <i>(Sorry, the image above is not loading. Please check back later when I fix the file path.)</i>
+    </p>
+
+    <hr>
+
+    <h2>Links I Like:</h2>
+    
+    <ul>
+        <li><a href="#nowhere">Yahoo! (What's this?)</a></li>
+        <li><a href="#nowhere">Alta Vista Search</a></li>
+        <li><a href="#nowhere">NCSA Mosaic Home Page</a></li>
+        <li><a href="#nowhere">Cool Site of the Day</a></li>
+    </ul>
+
+    <p>
+        <b>NOTE:</b> Links may take several minutes to load depending on your connection speed.
+    </p>
+
+    <hr>
+
+    <h2>My Interests:</h2>
+    
+    <ul>
+        <li>Computers</li>
+        <li>The Information Superhighway</li>
+        <li>Reading</li>
+        <li>Technology</li>
+    </ul>
+
+    <hr>
+
+    <h2>Contact Information:</h2>
+    
+    <p>
+        Email me at: <a href="#nowhere">webmaster@mysite.com</a><br>
+        <i>(Please allow 2-3 days for a response as I only check email weekly)</i>
+    </p>
+
+    <hr>
+
+    <center>
+        <p>
+            <font size="-1">
+                This page created: January 1, 1993<br>
+                Last updated: January 15, 1993<br>
+                Page hits: <b>0042</b>
+            </font>
+        </p>
+        
+        <p>
+            <div class="broken-img" style="width: 88px; height: 31px;">
+                [Button]<br>
+                Best viewed<br>
+                800x600
+            </div>
+        </p>
+    </center>
+
+    <script>
+        // Show alert on any link click
+        document.querySelectorAll('a[href="#nowhere"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('ERROR: The server is not responding. Please try again later.\n\n(This was common in 1993)');
+            });
+        });
+    </script>
+</body>
+</html>

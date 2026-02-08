@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TechCorp Solutions - Desktop Website</title>
+    <!-- NO viewport meta tag - that's the problem! -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #fff;
+            min-width: 980px; /* Fixed width for desktop only! */
+        }
+        .warning-banner {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .desktop-only {
+            margin-top: 50px;
+        }
+        .header {
+            background: linear-gradient(to bottom, #2c3e50, #34495e);
+            padding: 20px;
+            min-width: 980px;
+            overflow: hidden;
+        }
+        .logo {
+            float: left;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .nav {
+            float: right;
+            margin-top: 10px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+        }
+        .hero {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="500"><rect fill="%233498db" width="1920" height="500"/></svg>');
+            height: 500px;
+            position: relative;
+            min-width: 980px;
+        }
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            transform: translateY(-50%);
+            color: white;
+            width: 600px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .container {
+            width: 960px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        .columns {
+            display: table;
+            width: 100%;
+            margin: 40px 0;
+        }
+        .column {
+            display: table-cell;
+            width: 33.33%;
+            padding: 20px;
+            vertical-align: top;
+        }
+        .column h3 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .column p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+        .button {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 40px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .sidebar {
+            float: right;
+            width: 300px;
+            background: #ecf0f1;
+            padding: 20px;
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+        .main-content {
+            overflow: hidden;
+        }
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            clear: both;
+            min-width: 980px;
+        }
+        .back-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            z-index: 9999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .desktop-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+        .desktop-table th {
+            background: #34495e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        .desktop-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        .flash-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .flash-form input[type="text"],
+        .flash-form input[type="email"],
+        .flash-form textarea {
+            width: 400px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .flash-form textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .mobile-tip {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        .mobile-tip h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-banner">
+        ⚠️ YOU ARE VIEWING THIS ON MOBILE - This site is optimized for desktop only (minimum 980px width)
+    </div>
+
+    <div class="desktop-only">
+        <div class="header">
+            <div class="logo">TechCorp Solutions</div>
+            <div class="nav">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Services</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Our Website</h1>
+                <p>This website was built in 2010 before responsive design became standard. Everything is fixed-width and assumes you're on a desktop computer!</p>
+                <button class="button" onclick="alert('In 2010, clicking this on mobile would have been nearly impossible! The button is probably too small and hard to tap.')">Learn More</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="mobile-tip">
+                <h3>📱 The Mobile Problem (2010)</h3>
+                <p style="color: #856404; line-height: 1.8;">
+                    Before responsive design (popularized in 2011-2012), most websites were built 
+                    only for desktop. When smartphones became popular around 2007-2010, these sites 
+                    were nearly unusable on mobile. Users had to:
+                </p>
+                <ul style="color: #856404; margin-top: 10px; line-height: 2;">
+                    <li>Pinch and zoom constantly</li>
+                    <li>Scroll horizontally AND vertically</li>
+                    <li>Try to tap tiny links and buttons</li>
+                    <li>Read microscopic text</li>
+                    <li>Deal with Flash content that didn't work on iPhone</li>
+                </ul>
+                <p style="color: #856404; margin-top: 15px; font-weight: bold;">
+                    Try resizing your browser window to see how terrible this experience is!
+                </p>
+            </div>
+
+            <h2 style="color: #2c3e50; font-size: 36px; margin-bottom: 20px;">Our Services</h2>
+
+            <div class="columns">
+                <div class="column">
+                    <h3>Web Design</h3>
+                    <p>We create beautiful websites optimized for 1024x768 resolution! Best viewed on Internet Explorer 8 or Firefox 3.6.</p>
+                </div>
+                <div class="column">
+                    <h3>Consulting</h3>
+                    <p>Expert advice on how to make your business succeed online. We'll help you set up Flash animations and Java applets!</p>
+                </div>
+                <div class="column">
+                    <h3>Support</h3>
+                    <p>24/7 support via phone or email. We don't have a mobile site, so please call us from your desktop phone!</p>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="sidebar">
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">Quick Links</h3>
+                    <p style="font-size: 13px; line-height: 2;">
+                        <a href="#" style="color: #3498db;">Download Brochure</a><br>
+                        <a href="#" style="color: #3498db;">Request a Quote</a><br>
+                        <a href="#" style="color: #3498db;">View Portfolio</a><br>
+                        <a href="#" style="color: #3498db;">Client Testimonials</a><br>
+                    </p>
+                    <div style="background: #fff; padding: 15px; margin-top: 20px; border: 1px solid #ddd;">
+                        <h4 style="color: #2c3e50; margin-bottom: 10px;">Newsletter</h4>
+                        <input type="email" placeholder="Enter email" style="width: 100%; padding: 8px; border: 1px solid #ddd; margin-bottom: 10px; font-size: 12px;">
+                        <button class="button" style="padding: 8px 20px; font-size: 13px; width: 100%;">Subscribe</button>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 style="color: #2c3e50; margin-bottom: 20px;">Why Choose Us?</h2>
+                    <p style="color: #666; line-height: 1.8; margin-bottom: 20px;">
+                        We've been building websites since 2005! Our team of experts knows all about 
+                        table layouts, fixed-width designs, and optimizing for desktop screens.
+                    </p>
+
+                    <table class="desktop-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Description</th>
+                                <th>Availability</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Desktop Support</td>
+                                <td>Full support for 1024x768 and higher</td>
+                                <td>✅ Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Mobile Support</td>
+                                <td>Maybe someday in the future?</td>
+                                <td>❌ No</td>
+                            </tr>
+                            <tr>
+                                <td>Tablet Support</td>
+                                <td>What's a tablet?</td>
+                                <td>❌ No</td>
+                            </tr>
+                            <tr>
+                                <td>Flash Animations</td>
+                                <td>Beautiful animated intros</td>
+                                <td>✅ Yes (desktop only)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="flash-form">
+                <h2 style="color: #2c3e50; margin-bottom: 20px;">Contact Us</h2>
+                <p style="color: #666; margin-bottom: 20px;">Send us a message (good luck filling this out on mobile!)</p>
+                <form>
+                    <input type="text" placeholder="Your Name"><br>
+                    <input type="email" placeholder="Your Email"><br>
+                    <input type="text" placeholder="Phone Number"><br>
+                    <textarea placeholder="Your Message"></textarea><br>
+                    <button type="button" class="button" onclick="alert('In 2010, this form would have been impossible to fill out on a phone. You\'d have to zoom in, scroll around, and probably give up and use a desktop computer!')">Send Message</button>
+                </form>
+            </div>
+
+            <div style="background: #e8f5e9; border-left: 4px solid #4caf50; padding: 20px; margin: 30px 0;">
+                <h3 style="color: #2e7d32; margin-bottom: 10px;">💡 What Changed?</h3>
+                <p style="color: #1b5e20; line-height: 1.8;">
+                    <strong>Responsive Design</strong> was introduced by Ethan Marcotte in 2010 and became 
+                    mainstream around 2012-2014. Key innovations included:
+                </p>
+                <ul style="color: #1b5e20; margin-top: 10px; line-height: 2;">
+                    <li><strong>Media Queries:</strong> CSS that adapts to screen size</li>
+                    <li><strong>Flexible Grids:</strong> Layouts that scale proportionally</li>
+                    <li><strong>Fluid Images:</strong> Pictures that resize automatically</li>
+                    <li><strong>Mobile-First Design:</strong> Building for phones first, then desktop</li>
+                    <li><strong>Touch-Friendly Buttons:</strong> Big enough to tap with fingers</li>
+                </ul>
+                <p style="color: #1b5e20; margin-top: 15px;">
+                    Today, over 60% of web traffic is mobile. A non-responsive site in 2026 would be 
+                    considered completely broken!
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2010 TechCorp Solutions | Best viewed at 1024x768 or higher</p>
+            <p style="font-size: 12px; margin-top: 10px; opacity: 0.8;">
+                Optimized for Internet Explorer 8, Firefox 3.6, Safari 4 | Flash Player 10 Required
+            </p>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">← Back</a>
+
+    <script>
+        // Show current viewport size
+        function showViewportSize() {
+            const width = window.innerWidth;
+            const warning = document.querySelector('.warning-banner');
+            
+            if (width < 980) {
+                warning.style.display = 'block';
+                warning.innerHTML = `⚠️ YOUR SCREEN IS ${width}px WIDE - This site requires minimum 980px (you're missing ${980 - width}px!)`;
+            } else {
+                warning.style.display = 'none';
+            }
+        }
+
+        showViewportSize();
+        window.addEventListener('resize', showViewportSize);
+
+        // Simulate the frustration of tiny buttons on mobile
+        document.querySelectorAll('a, button').forEach(element => {
+            element.addEventListener('click', function(e) {
+                if (window.innerWidth < 980 && !this.classList.contains('back-link')) {
+                    const rect = this.getBoundingClientRect();
+                    if (rect.width < 44 || rect.height < 44) {
+                        e.preventDefault();
+                        alert('Tap target too small! (This button is only ' + Math.round(rect.width) + 'x' + Math.round(rect.height) + 'px)\n\nApple recommends minimum 44x44px for touch targets. In 2010, nobody thought about this!');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

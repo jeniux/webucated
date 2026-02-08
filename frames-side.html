@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>Cool Stuff</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+            background: #FFFFCC;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+        }
+        h3 {
+            color: #FF0000;
+            font-size: 13px;
+            margin: 10px 0 5px 0;
+            text-align: center;
+            background: #FFFF00;
+            padding: 5px;
+            border: 2px solid #000;
+        }
+        .ad-box {
+            background: #FFFFFF;
+            border: 2px solid #0000FF;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .badge {
+            width: 88px;
+            height: 31px;
+            background: linear-gradient(135deg, #FF0000, #0000FF);
+            margin: 5px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 10px;
+            border: 1px solid #000;
+        }
+        a {
+            color: #0000FF;
+            font-size: 11px;
+        }
+        .blink {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <h3>Cool Sites!</h3>
+    
+    <div class="ad-box">
+        <b class="blink">CLICK HERE!</b><br>
+        <a href="javascript:alert('This would have been a banner ad!')">Win a FREE PC!</a>
+    </div>
+    
+    <div class="badge">Netscape Now!</div>
+    <div class="badge">IE 3.0 Ready</div>
+    <div class="badge">800x600</div>
+    <div class="badge">Best of Web</div>
+    
+    <h3>Web Rings</h3>
+    <p style="font-size: 10px; text-align: center;">
+        This site is part of the<br>
+        <b>Cool Homepages Ring</b><br>
+        <a href="javascript:alert('Navigate the web ring!')">Next</a> | 
+        <a href="javascript:alert('Go back!')">Prev</a>
+    </p>
+    
+    <div class="ad-box" style="margin-top: 20px;">
+        <b style="color: #FF0000;">FREE!</b><br>
+        <a href="javascript:alert('Get your own free homepage space!')">Get Your Own<br>Homepage!</a>
+    </div>
+    
+    <h3>Awards</h3>
+    <div class="badge" style="width: 100px; height: 40px; background: gold;">
+        Site of<br>the Day
+    </div>
+    
+    <p style="text-align: center; margin-top: 20px; font-size: 10px; color: #666;">
+        Join 4,287 visitors<br>who love this site!
+    </p>
+</body>
+</html>

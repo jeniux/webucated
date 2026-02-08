@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html>
+<head>
+    <title>Dave's Awesome Homepage - 1996 Style</title>
+</head>
+<frameset rows="80,*,60" frameborder="1" border="5" bordercolor="#666666">
+    <!-- Top banner frame -->
+    <frame src="frames-top.html" name="topFrame" scrolling="no" noresize>
+    
+    <frameset cols="150,*,150">
+        <!-- Left navigation frame -->
+        <frame src="frames-nav.html" name="navFrame" scrolling="auto">
+        
+        <!-- Main content frame -->
+        <frame src="frames-main.html" name="mainFrame" scrolling="auto">
+        
+        <!-- Right ads/links frame -->
+        <frame src="frames-side.html" name="sideFrame" scrolling="auto">
+    </frameset>
+    
+    <!-- Bottom copyright frame -->
+    <frame src="frames-bottom.html" name="bottomFrame" scrolling="no" noresize>
+    
+    <noframes>
+        <body>
+            <h1>ERROR: Frames Not Supported!</h1>
+            <p>This website requires a frames-capable browser.</p>
+            <p>Please upgrade to Netscape Navigator 2.0 or Microsoft Internet Explorer 3.0</p>
+            <p><a href="frames-main.html">Click here for non-frames version</a> (but it won't look as cool)</p>
+        </body>
+    </noframes>
+</frameset>
+</html>
